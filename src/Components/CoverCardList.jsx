@@ -8,26 +8,45 @@ export default function CoverCardList({ search }) {
     // Here we define our query as a multi-line string
     // Storing it in a separate .graphql/.gql file is also possible
     var query = `
-  query ($id: Int, $page: Int, $perPage: Int, $search: String, $isAdult: Boolean = false ) {
-    Page (page: $page, perPage: $perPage) {
-      pageInfo {
-        total
-        currentPage
-        lastPage
-        hasNextPage
-        perPage
-      }
-      media (id: $id, search: $search, isAdult: $isAdult) {
-        id
-        coverImage {
-          extraLarge
+    query ( $page: Int, $perPage: Int= 10, $search: String = "k-on", $isAdult: Boolean = false) {
+      Page (page: $page, perPage: $perPage) {
+        pageInfo {
+          total
+          currentPage
+          lastPage
+          hasNextPage
+          perPage
         }
-        title {
-          romaji
+        media ( search: $search, isAdult: $isAdult) {
+          id
+          type
+          description
+          startDate {
+            year
+            month
+            day
+          }
+          endDate {
+            year
+            month
+            day
+          }
+          season
+          seasonYear
+          status
+          episodes
+          duration
+          genres
+          averageScore
+          coverImage {
+            extraLarge
+          }
+          title {
+            romaji
+          }
         }
       }
     }
-  }
 `;
 
     // Define our query variables and values that will be used in the query request
@@ -84,8 +103,12 @@ export default function CoverCardList({ search }) {
           return (
             <CoverImageCard
               key={Anime.id}
+              id={Anime.id}
               imageUrl={Anime.coverImage.extraLarge}
               name={Anime.title.romaji}
+              type={Anime.type}
+              description={Anime.description}
+              episodes={Anime.episodes}
             />
           );
         })}

@@ -1,12 +1,24 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-export default function CoverImageCard(props) {
+export default function CoverImageCard({
+  id,
+  imageUrl,
+  name,
+  type,
+  description,
+  episodes,
+}) {
   return (
-    <a href={"/"} className="coverCard--container">
-      <img alt="coverImage" className="coverCard--image" src={props.imageUrl} />
+    <Link
+      to={"/detail/" + id}
+      className="coverCard--container"
+      state={{ id, imageUrl, name, type, description, episodes }}
+    >
+      <img alt="coverImage" className="coverCard--image" src={imageUrl} />
       <div className="coverCard--infoContainer">
-        <p className="coverCard--name">{props.name}</p>
+        <p className="coverCard--name">{name}</p>
       </div>
-    </a>
+    </Link>
   );
 }
