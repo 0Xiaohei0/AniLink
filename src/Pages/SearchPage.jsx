@@ -12,6 +12,7 @@ function SearchPage() {
   const [search, setSearch] = useState("k-on");
   const [mediaArray, setMediaArray] = useState([]);
   const [searchResultOpened, setSearchResultOpened] = useState(true);
+  const [backendData, setBackendData] = useState([]);
   useEffect(() => {
     // Here we define our query as a multi-line string
     // Storing it in a separate .graphql/.gql file is also possible
@@ -85,9 +86,7 @@ function SearchPage() {
     }
 
     function handleData(data) {
-      console.log(data);
       setMediaArray(data.data.Page.media);
-      console.log(mediaArray);
     }
 
     function handleError(error) {
@@ -99,6 +98,15 @@ function SearchPage() {
       .then(handleResponse)
       .then(handleData)
       .catch(handleError);
+
+    fetch("/api")
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        setBackendData(data);
+        console.log(backendData);
+      });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search]);
@@ -128,7 +136,6 @@ function SearchPage() {
           <FontAwesomeIcon icon={faArrowLeft} />
         </button>
       </div>
-
       <section
         className={
           "CoverCardList--section " + (searchResultOpened ? "show" : "")
