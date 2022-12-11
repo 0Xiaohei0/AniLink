@@ -6,66 +6,32 @@ body {
   font-family: "Montserrat", sans-serif;
 }
 
-.CoverCardList--section {
-  padding: 10vh 5vw 0 5vw;
-}
-
-.CoverCardList--container {
-  display: grid;
-  gap: 20px;
-  grid-template-columns: repeat(auto-fill, 200px);
-  grid-auto-rows: auto;
-  justify-content: center;
-}
-
-.coverCard--container {
-  all: unset;
-  border-radius: 5px;
-  max-width: fit-content;
+Button {
+  align-items: center;
+  appearance: none;
+  background-color: #eeeeee;
+  border-radius: 4px;
+  border: 3px solid rgba(0, 0, 0, 0);
+  box-sizing: border-box;
+  color: #36395a;
   cursor: pointer;
-  transition: color 500ms;
-}
-.coverCard--container:hover {
-  color: brown;
-}
-
-.coverCard--image {
-  width: 100%;
-  height: 80%;
-  object-fit: cover;
-  display: block;
-  border-radius: 5px;
-  background-size: cover;
-}
-
-.coverCard--name {
-  font-weight: 700;
-  font-size: 20px;
-  margin: 0;
-}
-
-.Navbar {
-  position: fixed;
-  width: 100vw;
-  display: flex;
-  justify-content: space-between;
-  background-color: pink;
-  padding: 5px;
-  display: flex;
+  display: inline-flex;
+  font-family: "JetBrains Mono", monospace;
+  height: 48px;
   justify-content: center;
-}
-
-.SearchBar {
-  width: 30vw;
-  height: 5vh;
-  left: 536px;
-  top: 8px;
-
-  background: rgba(255, 255, 255, 0.45);
-  /* Gray 1 */
-
-  border: 5px solid #333333;
-  border-radius: 50px;
-  padding-left: 1rem;
-  font-size: 1.3rem;
+  line-height: 1;
+  list-style: none;
+  overflow: hidden;
+  padding-left: 16px;
+  padding-right: 16px;
+  position: relative;
+  text-align: left;
+  text-decoration: none;
+  transition: transform 0.15s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  will-change: box-shadow, transform;
+  font-size: 18px;
 }
