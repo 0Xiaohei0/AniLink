@@ -1,8 +1,8 @@
 import "./App.css";
-import Posters from "./Components/Posters";
+import CoverCardList from "./Components/CoverCardList";
 
 function App() {
-  return <Posters></Posters>;
+  return <CoverCardList></CoverCardList>;
 }
 
 export default App;

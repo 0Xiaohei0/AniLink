@@ -2,7 +2,7 @@ import React from "react";
 import CoverImageCard from "./CoverImageCard";
 import { useState, useEffect } from "react";
 
-export default function Posters() {
+export default function CoverCardList() {
   const [mediaArray, setMediaArray] = useState([]);
   useEffect(() => {
     // Make the HTTP Api request
@@ -73,12 +73,9 @@ export default function Posters() {
     alert("Error, check console");
     console.error(error);
   }
-
-  //return <div>Posters</div>;
   return (
-    <section id="Posters">
-      <h1 className="Posters--title">CoverImages</h1>
-      <div className="Posters--container">
+    <section className="CoverCardList--section">
+      <div className="CoverCardList--container">
         {mediaArray.map((Anime) => {
           return (
             <CoverImageCard
