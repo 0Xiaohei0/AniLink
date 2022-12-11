@@ -2,6 +2,8 @@ import React from "react";
 import CoverImageCard from "../Components/CoverImageCard";
 import { useState, useEffect } from "react";
 import "./SearchPage.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 function SearchPage() {
   const [search, setSearch] = useState("k-on");
@@ -103,14 +105,13 @@ function SearchPage() {
   };
 
   function handleSearchBarClick() {
-    console.log(searchResultOpened);
     setSearchResultOpened(true);
-    console.log(searchResultOpened);
   }
 
   return (
     <div>
       <div className="Navbar">
+        <FontAwesomeIcon icon={faMagnifyingGlass} className="SearchBarIcon" />
         <input
           className="SearchBar"
           type="text"

@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus, faCheck } from "@fortawesome/free-solid-svg-icons";
 
 export default function CoverImageCard({
   id,
@@ -37,8 +39,12 @@ export default function CoverImageCard({
       </Link>
       {isHovering ? (
         <div>
-          <button className="coverCard--addButton">Add</button>
-          <button className="coverCard--finishedButton">finished</button>
+          <button className="coverCard--addButton">
+            <FontAwesomeIcon icon={faPlus} />
+          </button>
+          <button className="coverCard--finishedButton">
+            <FontAwesomeIcon icon={faCheck} />
+          </button>
         </div>
       ) : (
         ""
