@@ -27,6 +27,29 @@
   max-width: fit-content;
   cursor: pointer;
   transition: color 500ms;
+  position: relative;
+}
+
+.coverCard--link {
+  all: unset;
+  border-radius: 5px;
+  max-width: fit-content;
+  cursor: pointer;
+  transition: color 500ms;
+  position: relative;
+}
+
+.coverCard--addButton {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  border-radius: 60px;
+}
+.coverCard--finishedButton {
+  position: absolute;
+  top: 55px;
+  right: 5px;
+  border-radius: 60px;
 }
 .coverCard--container:hover {
   color: brown;

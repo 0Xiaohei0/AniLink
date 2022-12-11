@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function CoverImageCard({
@@ -9,16 +9,40 @@ export default function CoverImageCard({
   description,
   episodes,
 }) {
+  const [isHovering, setIsHovering] = useState(false);
+
+  const handleMouseOver = () => {
+    setIsHovering(true);
+  };
+
+  const handleMouseOut = () => {
+    setIsHovering(false);
+  };
+
   return (
-    <Link
-      to={"/detail/" + id}
+    <div
       className="coverCard--container"
-      state={{ id, imageUrl, name, type, description, episodes }}
+      onMouseOver={handleMouseOver}
+      onMouseOut={handleMouseOut}
     >
-      <img alt="coverImage" className="coverCard--image" src={imageUrl} />
-      <div className="coverCard--infoContainer">
-        <p className="coverCard--name">{name}</p>
-      </div>
-    </Link>
+      <Link
+        to={"/detail/" + id}
+        state={{ id, imageUrl, name, type, description, episodes }}
+        className="coverCard--link"
+      >
+        <img alt="coverImage" className="coverCard--image" src={imageUrl} />
+        <div className="coverCard--infoContainer">
+          <p className="coverCard--name">{name}</p>
+        </div>
+      </Link>
+      {isHovering ? (
+        <div>
+          <button className="coverCard--addButton">Add</button>
+          <button className="coverCard--finishedButton">finished</button>
+        </div>
+      ) : (
+        ""
+      )}
+    </div>
   );
 }

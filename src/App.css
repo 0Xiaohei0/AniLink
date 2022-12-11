@@ -35,3 +35,10 @@ Button {
   will-change: box-shadow, transform;
   font-size: 18px;
 }
+Button:hover {
+  transform: translateY(-2px);
+}
+
+Button:active {
+  transform: translateY(2px);
+}

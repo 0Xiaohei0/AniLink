@@ -6,7 +6,7 @@ import "./SearchPage.css";
 function SearchPage() {
   const [search, setSearch] = useState("k-on");
   const [mediaArray, setMediaArray] = useState([]);
-  const [searchResultOpened, setSearchResultOpened] = useState(false);
+  const [searchResultOpened, setSearchResultOpened] = useState(true);
   useEffect(() => {
     // Here we define our query as a multi-line string
     // Storing it in a separate .graphql/.gql file is also possible
