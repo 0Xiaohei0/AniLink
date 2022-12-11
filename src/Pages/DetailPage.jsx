@@ -1,14 +1,18 @@
 import "./DetailPage.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
 function DetailPage() {
   const location = useLocation();
   var { imageUrl, name, type, description, episodes } = location.state;
-  const watchedArray = new Array(episodes).fill(false);
+  const [watchedArray, setWatchedArray] = useState(
+    new Array(episodes).fill(false)
+  );
 
   const [editURL, setEditURL] = useState(false);
   const [URL, setURL] = useState("");
+
+  useEffect(() => {}, [watchedArray]);
   function handleSetURL() {
     setEditURL(true);
   }
@@ -17,6 +21,42 @@ function DetailPage() {
   }
   function handleURLInput(event) {
     setURL(event.target.value);
+  }
+  function handleEpisodeInput(event) {
+    let episodeIndex = event.target.value - 1;
+    if (episodeIndex <= episodes) {
+      let watchedArraycpy = [...watchedArray];
+      for (let i = 0; i < episodes; i++) {
+        if (i <= episodeIndex) {
+          watchedArraycpy[i] = true;
+        } else {
+          watchedArraycpy[i] = false;
+        }
+      }
+      setWatchedArray(watchedArraycpy);
+    }
+  }
+  function handleCompeleted() {
+    let watchedArraycpy = [...watchedArray];
+    for (let i = 0; i < episodes; i++) {
+      watchedArraycpy[i] = true;
+    }
+    setWatchedArray(watchedArraycpy);
+  }
+  function getStatus() {
+    let episodesWatchedCount = 0;
+    for (let i = 0; i < episodes; i++) {
+      if (watchedArray[i] !== false) {
+        episodesWatchedCount++;
+      }
+    }
+    if (episodesWatchedCount === 0) {
+      return "Not Started";
+    } else if (episodesWatchedCount === episodes) {
+      return "Compeleted";
+    } else {
+      return "In progress";
+    }
   }
   return (
     <div className="PageContainer">
@@ -28,15 +68,39 @@ function DetailPage() {
           <p>Type: {type}</p>
         </div>
       </div>
+      <h2>Watch Progress: {getStatus()}</h2>
       <div className="EpisodeButtonContainer">
         {watchedArray.map((watchedBool, index) => (
-          <button key={index} className="EpisodeButton">
-            <p>{index}</p>
-            <p>{watchedBool}</p>
+          <button
+            key={index}
+            className={
+              "EpisodeButton " + (watchedBool === true ? "watched" : "")
+            }
+            onClick={() => {
+              let watchedArraycpy = [...watchedArray];
+              watchedArraycpy[index] = !watchedArraycpy[index];
+              setWatchedArray(watchedArraycpy);
+            }}
+          >
+            <p>{index + 1}</p>
           </button>
         ))}
       </div>
-      <input className="EpisodeInput" type="number" />
+      <div className="EpisodeInputContainer">
+        <input
+          className="EpisodeInput "
+          type="number"
+          max={episodes}
+          onChange={handleEpisodeInput}
+        />
+        <button
+          className="CompeletedButton EpisodeButton"
+          onClick={handleCompeleted}
+        >
+          Compeleted
+        </button>
+      </div>
+
       <div>
         {URL === "" ? (
           <p>URL: Not Set</p>
