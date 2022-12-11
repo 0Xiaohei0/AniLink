@@ -3,7 +3,10 @@ import CoverImageCard from "../Components/CoverImageCard";
 import { useState, useEffect } from "react";
 import "./SearchPage.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import {
+  faArrowLeft,
+  faMagnifyingGlass,
+} from "@fortawesome/free-solid-svg-icons";
 
 function SearchPage() {
   const [search, setSearch] = useState("k-on");
@@ -122,7 +125,7 @@ function SearchPage() {
           style={{ visibility: searchResultOpened ? "visible" : "hidden" }}
           onClick={() => setSearchResultOpened(false)}
         >
-          Back
+          <FontAwesomeIcon icon={faArrowLeft} />
         </button>
       </div>
 
