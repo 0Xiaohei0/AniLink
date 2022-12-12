@@ -10,7 +10,9 @@ function DetailPage() {
   );
 
   const [editURL, setEditURL] = useState(false);
-  const [URL, setURL] = useState("");
+  const [URL, setURL] = useState(
+    "http://www.yinghuacd.com/search/" + name.toString() + "/"
+  );
 
   useEffect(() => {}, [watchedArray]);
   function handleSetURL() {

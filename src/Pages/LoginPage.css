@@ -1,0 +1,37 @@
+input {
+  width: 30vw;
+  left: 536px;
+  padding: 5px;
+  top: 8px;
+
+  background: rgba(255, 255, 255, 0.45);
+  /* Gray 1 */
+
+  border: 2px solid #333333;
+  border-radius: 10px;
+  padding-left: 10px;
+  font-size: 1.3rem;
+}
+
+.LoginPage--Container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.LoginPage--Form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.LoginPage--InputPair {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+}
+
+label {
+  margin: 10px;
+}

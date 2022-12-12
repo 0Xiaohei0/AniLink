@@ -42,3 +42,8 @@ Button:hover {
 Button:active {
   transform: translateY(2px);
 }
+
+a {
+  all: unset;
+  cursor: pointer;
+}

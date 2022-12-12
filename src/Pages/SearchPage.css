@@ -106,3 +106,24 @@
   position: relative;
   left: 40px;
 }
+
+.userAvatar {
+  position: fixed;
+  cursor: pointer;
+  top: 20px;
+  right: 20px;
+}
+
+.userDropDown {
+  position: fixed;
+  background-color: white;
+  border-radius: 5px;
+  padding: 10px;
+  top: 60px;
+  right: 10px;
+}
+
+.userDropDown > a {
+  all: unset;
+  cursor: pointer;
+}

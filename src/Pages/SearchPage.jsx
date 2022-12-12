@@ -6,12 +6,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowLeft,
   faMagnifyingGlass,
+  faUser,
 } from "@fortawesome/free-solid-svg-icons";
 
 function SearchPage() {
   const [search, setSearch] = useState("k-on");
   const [mediaArray, setMediaArray] = useState([]);
   const [searchResultOpened, setSearchResultOpened] = useState(true);
+  const [userDropdownOpened, setUserDropdownOpened] = useState(false);
   const [backendData, setBackendData] = useState([]);
   useEffect(() => {
     // Here we define our query as a multi-line string
@@ -135,7 +137,20 @@ function SearchPage() {
         >
           <FontAwesomeIcon icon={faArrowLeft} />
         </button>
+        <div
+          className="userAvatar"
+          onMouseDown={() => setUserDropdownOpened(!userDropdownOpened)}
+        >
+          <FontAwesomeIcon icon={faUser} />
+        </div>
+        <div
+          style={{ visibility: userDropdownOpened ? "visible" : "hidden" }}
+          className="userDropDown"
+        >
+          <a href="/login">Login</a>
+        </div>
       </div>
+
       <section
         className={
           "CoverCardList--section " + (searchResultOpened ? "show" : "")
