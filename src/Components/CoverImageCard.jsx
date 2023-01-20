@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faCheck } from "@fortawesome/free-solid-svg-icons";
+import { pushWatchlist } from "../Data/Watchlist";
 
 export default function CoverImageCard({
   id,
@@ -19,6 +20,19 @@ export default function CoverImageCard({
 
   const handleMouseOut = () => {
     setIsHovering(false);
+  };
+
+  const handleAdd = () => {
+    pushWatchlist(
+      JSON.stringify({
+        id: id,
+        imageUrl: imageUrl,
+        name: name,
+        type: type,
+        description: description,
+        episodes: episodes,
+      })
+    );
   };
 
   return (
@@ -39,7 +53,7 @@ export default function CoverImageCard({
       </Link>
       {isHovering ? (
         <div>
-          <button className="coverCard--addButton">
+          <button className="coverCard--addButton" onClick={handleAdd}>
             <FontAwesomeIcon icon={faPlus} />
           </button>
           <button className="coverCard--finishedButton">

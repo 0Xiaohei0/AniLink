@@ -12,7 +12,7 @@ import {
 function SearchPage() {
   const [search, setSearch] = useState("k-on");
   const [mediaArray, setMediaArray] = useState([]);
-  const [searchResultOpened, setSearchResultOpened] = useState(true);
+  const [searchResultOpened, setSearchResultOpened] = useState(false);
   const [userDropdownOpened, setUserDropdownOpened] = useState(false);
   const [backendData, setBackendData] = useState([]);
   useEffect(() => {
