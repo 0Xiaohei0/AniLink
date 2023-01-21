@@ -6,7 +6,7 @@ import { getWatchlist } from "../Data/Watchlist";
 function WatchlistPage() {
   return (
     <div className="Watchlist-Container">
-      WatchlistPage
+      <h1>Watchlist:</h1>
       <div className="CoverCardList--container">
         {getWatchlist().map((Anime) => {
           Anime = JSON.parse(Anime);
@@ -19,6 +19,8 @@ function WatchlistPage() {
               type={Anime.type}
               description={Anime.description}
               episodes={Anime.episodes}
+              addEnabled={false}
+              removeEnabled={true}
             />
           );
         })}

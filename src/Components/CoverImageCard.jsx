@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faCheck } from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faCheck, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { pushWatchlist } from "../Data/Watchlist";
 
 export default function CoverImageCard({
@@ -11,6 +11,9 @@ export default function CoverImageCard({
   type,
   description,
   episodes,
+  addEnabled = true,
+  finishEnabled = true,
+  removeEnabled = false,
 }) {
   const [isHovering, setIsHovering] = useState(false);
 
@@ -53,12 +56,27 @@ export default function CoverImageCard({
       </Link>
       {isHovering ? (
         <div>
-          <button className="coverCard--addButton" onClick={handleAdd}>
-            <FontAwesomeIcon icon={faPlus} />
-          </button>
-          <button className="coverCard--finishedButton">
-            <FontAwesomeIcon icon={faCheck} />
-          </button>
+          {addEnabled ? (
+            <button className="coverCard--addButton" onClick={handleAdd}>
+              <FontAwesomeIcon icon={faPlus} />
+            </button>
+          ) : (
+            ""
+          )}
+          {removeEnabled ? (
+            <button className="coverCard--addButton" onClick={handleAdd}>
+              <FontAwesomeIcon icon={faTrash} />
+            </button>
+          ) : (
+            ""
+          )}
+          {finishEnabled ? (
+            <button className="coverCard--finishedButton">
+              <FontAwesomeIcon icon={faCheck} />
+            </button>
+          ) : (
+            ""
+          )}
         </div>
       ) : (
         ""
