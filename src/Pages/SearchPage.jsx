@@ -1,7 +1,7 @@
 import React from "react";
 import CoverImageCard from "../Components/CoverImageCard";
 import { useState, useEffect } from "react";
-import "./SearchPage.css";
+import "./Main.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowLeft,

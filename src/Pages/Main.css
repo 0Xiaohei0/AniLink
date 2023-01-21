@@ -72,6 +72,17 @@
   margin: 0;
 }
 
+.coverCard--progressBar {
+  margin: 10px 0 10px 0;
+  height: 6px;
+  border-radius: 3px;
+  background-color: cadetblue;
+}
+
+.coverCard--progress {
+  margin-top: 0;
+}
+
 .Navbar {
   position: fixed;
   width: 100vw;
@@ -126,4 +137,10 @@
 .userDropDown > a {
   all: unset;
   cursor: pointer;
+}
+
+.Watchlist-Container {
+  position: absolute;
+  top: 8vh;
+  padding: 0.5rem 5rem;
 }

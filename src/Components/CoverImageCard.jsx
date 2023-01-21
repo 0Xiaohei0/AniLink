@@ -14,6 +14,7 @@ export default function CoverImageCard({
   addEnabled = true,
   finishEnabled = true,
   removeEnabled = false,
+  progress = 0,
 }) {
   const [isHovering, setIsHovering] = useState(false);
 
@@ -38,6 +39,13 @@ export default function CoverImageCard({
     );
   };
 
+  const getProgressPercent = () => {
+    if (episodes === 0) {
+      return 0;
+    }
+    return (progress / (episodes ? episodes : 1)) * 100;
+  };
+
   return (
     <div
       className="coverCard--container"
@@ -52,6 +60,22 @@ export default function CoverImageCard({
         <img alt="coverImage" className="coverCard--image" src={imageUrl} />
         <div className="coverCard--infoContainer">
           <p className="coverCard--name">{name}</p>
+          <div
+            className="coverCard--progressBar"
+            style={{
+              width:
+                getProgressPercent() === 0 ? "4%" : getProgressPercent() + "%",
+              backgroundColor:
+                getProgressPercent() === 0
+                  ? "rgb(112, 166, 255)"
+                  : getProgressPercent() < 100
+                  ? "rgb(255, 167, 79)"
+                  : "rgb(99, 245, 66)",
+            }}
+          ></div>
+          <p className="coverCard--progress">
+            {progress + "/" + (episodes ? episodes : 1)}
+          </p>
         </div>
       </Link>
       {isHovering ? (
