@@ -142,5 +142,6 @@
 .Watchlist-Container {
   position: absolute;
   top: 8vh;
-  padding: 0.5rem 5rem;
+  padding: 5vw 5vw;
+  width: 90vw;
 }

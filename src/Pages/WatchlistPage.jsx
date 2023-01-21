@@ -1,5 +1,4 @@
 import React from "react";
-import "./WatchlistPage.css";
 import CoverImageCard from "../Components/CoverImageCard";
 import { getWatchlist } from "../Data/Watchlist";
 
