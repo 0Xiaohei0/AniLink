@@ -14,7 +14,7 @@ function SearchPage() {
   const [mediaArray, setMediaArray] = useState([]);
   const [searchResultOpened, setSearchResultOpened] = useState(false);
   const [userDropdownOpened, setUserDropdownOpened] = useState(false);
-  const [backendData, setBackendData] = useState([]);
+  // const [backendData, setBackendData] = useState([]);
   useEffect(() => {
     // Here we define our query as a multi-line string
     // Storing it in a separate .graphql/.gql file is also possible
@@ -101,14 +101,14 @@ function SearchPage() {
       .then(handleData)
       .catch(handleError);
 
-    fetch("/api")
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        setBackendData(data);
-        console.log(backendData);
-      });
+    // fetch("/api")
+    //   .then((response) => {
+    //     return response.json();
+    //   })
+    //   .then((data) => {
+    //     setBackendData(data);
+    //     console.log(backendData);
+    //   });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search]);
