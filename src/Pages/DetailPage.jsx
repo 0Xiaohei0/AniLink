@@ -71,7 +71,7 @@ function DetailPage() {
         <img alt="coverImage" className="image" src={imageUrl} />
         <div>
           <h1>{name}</h1>
-          <p>{description}</p>
+          <p dangerouslySetInnerHTML={{ __html: description }}></p>
           <p>Type: {type}</p>
         </div>
       </div>
