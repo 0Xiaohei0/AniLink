@@ -20,7 +20,7 @@ function SearchPage() {
     // Here we define our query as a multi-line string
     // Storing it in a separate .graphql/.gql file is also possible
     var query = `
-    query ( $page: Int, $perPage: Int= 10, $search: String = "k-on", $isAdult: Boolean = false) {
+    query ( $page: Int, $perPage: Int= 30, $search: String = "k-on", $isAdult: Boolean = false, $sort: [MediaSort] = POPULARITY_DESC) {
       Page (page: $page, perPage: $perPage) {
         pageInfo {
           total
@@ -29,7 +29,7 @@ function SearchPage() {
           hasNextPage
           perPage
         }
-        media ( search: $search, isAdult: $isAdult) {
+        media ( search: $search, isAdult: $isAdult, sort: $sort) {
           id
           type
           description

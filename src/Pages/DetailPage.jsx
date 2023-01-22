@@ -6,7 +6,11 @@ import { getProgressArray, setProgressArray } from "../Data/Watchlist";
 function DetailPage() {
   const location = useLocation();
   var { id, imageUrl, name, type, description, episodes } = location.state;
-  const [watchedArray, setWatchedArray] = useState(getProgressArray(id));
+  const [watchedArray, setWatchedArray] = useState(
+    getProgressArray(id)
+      ? getProgressArray(id)
+      : new Array(episodes).fill(false)
+  );
   console.log(`getting progressArray of anime ${id}: ${getProgressArray(id)}`);
   const [editURL, setEditURL] = useState(false);
   const [URL, setURL] = useState(

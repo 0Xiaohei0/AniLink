@@ -9,12 +9,13 @@ export function getAnime(aniId) {
 export function getProgressArray(aniId) {
   let storedWatchList = getWatchlistFromLocalStorage();
   let anime = storedWatchList.find((anime) => anime.id === aniId);
-  return anime ? anime.progressArray : [];
+  return anime ? anime.progressArray : undefined;
 }
 
 export function setProgressArray(aniId, progressArray) {
   let storedWatchList = getWatchlistFromLocalStorage();
   let anime = storedWatchList.find((anime) => anime.id === aniId);
+  if (!anime) return;
   anime.progressArray = progressArray;
   let episodesWatchedCount = 0;
   for (let i = 0; i < progressArray.length; i++) {
@@ -47,10 +48,12 @@ function getWatchlistFromLocalStorage() {
     storedWatchList = [];
   } else {
     storedWatchList = JSON.parse(storedWatchList);
-    if (typeof storedWatchList[0] === String)
-      for (let i = 0; i < storedWatchList.length; i++) {
+    for (let i = 0; i < storedWatchList.length; i++) {
+      console.log(storedWatchList);
+      try {
         storedWatchList[i] = JSON.parse(storedWatchList.at(i));
-      }
+      } catch {}
+    }
   }
   return storedWatchList;
 }
