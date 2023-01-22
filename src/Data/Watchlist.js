@@ -1,21 +1,35 @@
 export function getWatchlist() {
   return getWatchlistFromLocalStorage();
 }
+export function getAnime(aniId) {
+  let storedWatchList = getWatchlistFromLocalStorage();
+  return storedWatchList.find((anime) => anime.id === aniId);
+}
 
-export function getProgress(aniId) {
+export function getProgressArray(aniId) {
   let storedWatchList = getWatchlistFromLocalStorage();
   let anime = storedWatchList.find((anime) => anime.id === aniId);
   return anime ? anime.progressArray : [];
 }
 
-export function setWatchlist(watchListInput) {
-  // localStorage.setItem("watchList", watchListInput);
+export function setProgressArray(aniId, progressArray) {
+  let storedWatchList = getWatchlistFromLocalStorage();
+  let anime = storedWatchList.find((anime) => anime.id === aniId);
+  anime.progressArray = progressArray;
+  let episodesWatchedCount = 0;
+  for (let i = 0; i < progressArray.length; i++) {
+    if (progressArray[i] !== false) {
+      episodesWatchedCount++;
+    }
+  }
+  anime.progress = episodesWatchedCount;
+  setWatchlist(storedWatchList);
 }
 
 export function pushWatchlist(animeToPush) {
   let storedWatchList = getWatchlistFromLocalStorage();
   storedWatchList.push(animeToPush);
-  localStorage.setItem("watchList", JSON.stringify(storedWatchList));
+  setWatchlist(storedWatchList);
 }
 
 export function updateWatchlist(animeToUpdate, progressArray) {
@@ -24,7 +38,7 @@ export function updateWatchlist(animeToUpdate, progressArray) {
     (anime) => anime.id === animeToUpdate
   );
   animeToModify.progressArray = progressArray;
-  localStorage.setItem("watchList", JSON.stringify(storedWatchList));
+  setWatchlist(storedWatchList);
 }
 
 function getWatchlistFromLocalStorage() {
@@ -33,9 +47,14 @@ function getWatchlistFromLocalStorage() {
     storedWatchList = [];
   } else {
     storedWatchList = JSON.parse(storedWatchList);
-    for (let i = 0; i < storedWatchList.length; i++) {
-      storedWatchList[i] = JSON.parse(storedWatchList.at(i));
-    }
+    if (typeof storedWatchList[0] === String)
+      for (let i = 0; i < storedWatchList.length; i++) {
+        storedWatchList[i] = JSON.parse(storedWatchList.at(i));
+      }
   }
   return storedWatchList;
+}
+
+function setWatchlist(watchListInput) {
+  localStorage.setItem("watchList", JSON.stringify(watchListInput));
 }

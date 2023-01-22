@@ -8,7 +8,7 @@ import {
   faMagnifyingGlass,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
-import { getProgress } from "../Data/Watchlist";
+import { getProgressArray } from "../Data/Watchlist";
 
 function SearchPage() {
   const [search, setSearch] = useState("k-on");
@@ -169,7 +169,7 @@ function SearchPage() {
                 type={Anime.type}
                 description={Anime.description}
                 episodes={Anime.episodes}
-                progressArray={getProgress(Anime.id)}
+                progressArray={getProgressArray(Anime.id)}
               />
             );
           })}

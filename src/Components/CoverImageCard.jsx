@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faCheck, faTrash } from "@fortawesome/free-solid-svg-icons";
-import { pushWatchlist } from "../Data/Watchlist";
+import { pushWatchlist, getAnime } from "../Data/Watchlist";
 
 export default function CoverImageCard({
   id,
@@ -45,6 +45,11 @@ export default function CoverImageCard({
     }
     return (progress / (episodes ? episodes : 1)) * 100;
   };
+
+  let anime = getAnime(id);
+  if (anime != null && anime.progress != null) {
+    progress = anime.progress;
+  }
 
   return (
     <div
