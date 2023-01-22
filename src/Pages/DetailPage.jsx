@@ -1,14 +1,13 @@
 import "./DetailPage.css";
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+import { getProgress } from "../Data/Watchlist";
 
 function DetailPage() {
   const location = useLocation();
-  var { imageUrl, name, type, description, episodes } = location.state;
-  const [watchedArray, setWatchedArray] = useState(
-    new Array(episodes).fill(false)
-  );
-
+  var { id, imageUrl, name, type, description, episodes } = location.state;
+  const [watchedArray, setWatchedArray] = useState(getProgress(id));
+  console.log(`getting progressArray of anime ${id}: ${getProgress(id)}`);
   const [editURL, setEditURL] = useState(false);
   const [URL, setURL] = useState(
     "http://www.yinghuacd.com/search/" + name.toString() + "/"

@@ -8,7 +8,6 @@ function WatchlistPage() {
       <h1>Watchlist:</h1>
       <div className="CoverCardList--container">
         {getWatchlist().map((Anime) => {
-          Anime = JSON.parse(Anime);
           return (
             <CoverImageCard
               key={Anime.id}

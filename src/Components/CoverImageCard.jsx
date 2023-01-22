@@ -17,7 +17,6 @@ export default function CoverImageCard({
   progress = 0,
 }) {
   const [isHovering, setIsHovering] = useState(false);
-
   const handleMouseOver = () => {
     setIsHovering(true);
   };
@@ -35,6 +34,7 @@ export default function CoverImageCard({
         type: type,
         description: description,
         episodes: episodes,
+        progressArray: new Array(episodes).fill(false),
       })
     );
   };
@@ -54,7 +54,14 @@ export default function CoverImageCard({
     >
       <Link
         to={"/detail/" + id}
-        state={{ id, imageUrl, name, type, description, episodes }}
+        state={{
+          id,
+          imageUrl,
+          name,
+          type,
+          description,
+          episodes,
+        }}
         className="coverCard--link"
       >
         <img alt="coverImage" className="coverCard--image" src={imageUrl} />
