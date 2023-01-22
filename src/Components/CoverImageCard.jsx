@@ -34,6 +34,7 @@ export default function CoverImageCard({
       description: description,
       episodes: episodes,
       progressArray: new Array(episodes).fill(false),
+      progress: progress,
     });
   };
 

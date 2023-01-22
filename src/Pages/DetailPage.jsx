@@ -11,7 +11,6 @@ function DetailPage() {
       ? getProgressArray(id)
       : new Array(episodes).fill(false)
   );
-  console.log(`getting progressArray of anime ${id}: ${getProgressArray(id)}`);
   const [editURL, setEditURL] = useState(false);
   const [URL, setURL] = useState(
     "http://www.yinghuacd.com/search/" + name.toString() + "/"

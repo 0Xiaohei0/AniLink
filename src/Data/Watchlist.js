@@ -53,7 +53,6 @@ function getWatchlistFromLocalStorage() {
   } else {
     storedWatchList = JSON.parse(storedWatchList);
     for (let i = 0; i < storedWatchList.length; i++) {
-      console.log(storedWatchList);
       try {
         storedWatchList[i] = JSON.parse(storedWatchList.at(i));
       } catch {}
@@ -64,4 +63,5 @@ function getWatchlistFromLocalStorage() {
 
 function setWatchlist(watchListInput) {
   localStorage.setItem("watchList", JSON.stringify(watchListInput));
+  window.dispatchEvent(new Event("storage"));
 }

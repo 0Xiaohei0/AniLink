@@ -145,3 +145,31 @@
   padding: 5vw 5vw;
   width: 90vw;
 }
+
+.Watchlist-Header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.Watchlist-Filter-Container {
+  display: flex;
+  flex-direction: row;
+  align-items: space-around;
+}
+
+.Watchlist-Filter-left {
+  border-radius: 5px 0 0 5px;
+}
+.Watchlist-Filter-middle {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+.Watchlist-Filter-right {
+  border-radius: 0 5px 5px 0;
+}
+
+.Filter-Active {
+  background-color: rgb(158, 197, 255);
+}
