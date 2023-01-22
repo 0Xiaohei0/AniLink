@@ -26,17 +26,15 @@ export default function CoverImageCard({
   };
 
   const handleAdd = () => {
-    pushWatchlist(
-      JSON.stringify({
-        id: id,
-        imageUrl: imageUrl,
-        name: name,
-        type: type,
-        description: description,
-        episodes: episodes,
-        progressArray: new Array(episodes).fill(false),
-      })
-    );
+    pushWatchlist({
+      id: id,
+      imageUrl: imageUrl,
+      name: name,
+      type: type,
+      description: description,
+      episodes: episodes,
+      progressArray: new Array(episodes).fill(false),
+    });
   };
 
   const getProgressPercent = () => {

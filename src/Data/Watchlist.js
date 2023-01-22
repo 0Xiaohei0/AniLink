@@ -29,8 +29,12 @@ export function setProgressArray(aniId, progressArray) {
 
 export function pushWatchlist(animeToPush) {
   let storedWatchList = getWatchlistFromLocalStorage();
-  storedWatchList.push(animeToPush);
+  if (storedWatchList.find((anime) => anime.id === animeToPush.id)) {
+    return false;
+  }
+  storedWatchList.push(JSON.stringify(animeToPush));
   setWatchlist(storedWatchList);
+  return true;
 }
 
 export function updateWatchlist(animeToUpdate, progressArray) {
