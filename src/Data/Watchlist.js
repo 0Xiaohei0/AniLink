@@ -71,7 +71,13 @@ function getWatchlistFromLocalStorage() {
   return storedWatchList;
 }
 
-function setWatchlist(watchListInput) {
-  localStorage.setItem("watchList", JSON.stringify(watchListInput));
+export function setWatchlist(watchListInput) {
+  if (typeof watchListInput === Array)
+    localStorage.setItem("watchList", JSON.stringify(watchListInput));
+  else if (typeof watchListInput === "string")
+    localStorage.setItem("watchList", watchListInput);
+  else {
+    localStorage.setItem("watchList", JSON.stringify([]));
+  }
   window.dispatchEvent(new Event("storage"));
 }

@@ -1,5 +1,7 @@
 import React from "react";
 import { getWatchlist } from "../Data/Watchlist";
+import { useState } from "react";
+import { setWatchlist } from "../Data/Watchlist";
 
 function DataExportPage() {
   function exportWatchlist() {
@@ -12,11 +14,34 @@ function DataExportPage() {
     link.href = url;
     link.click();
   }
+
+  const [files, setFiles] = useState("");
+
+  const handleFileChange = (e) => {
+    const fileReader = new FileReader();
+    fileReader.readAsText(e.target.files[0], "UTF-8");
+    fileReader.onload = (e) => {
+      console.log("e.target.result", e.target.result);
+      setFiles(e.target.result);
+    };
+  };
+  const importWatchlist = () => {
+    console.log(typeof files);
+    setWatchlist(files);
+  };
+
   return (
-    <section>
-      <h1>Data Export</h1>
-      <button onClick={exportWatchlist}>Export as json</button>
-    </section>
+    <div>
+      <section>
+        <h1>Data Export</h1>
+        <button onClick={exportWatchlist}>Export as json</button>
+      </section>
+      <section>
+        <h1>Data Import</h1>
+        <input type="file" onChange={handleFileChange} />
+        <button onClick={importWatchlist}>Import</button>
+      </section>
+    </div>
   );
 }
 

@@ -143,11 +143,7 @@ export default function CoverImageCard({
             ""
           )}
           {removeEnabled ? (
-            <button
-              Onclick
-              className="coverCard--addButton"
-              onClick={handleDelete}
-            >
+            <button className="coverCard--addButton" onClick={handleDelete}>
               <FontAwesomeIcon icon={faTrash} />
             </button>
           ) : (
