@@ -16,7 +16,7 @@ function DetailPage() {
       : new Array(episodes).fill(false)
   );
   const [editURL, setEditURL] = useState(false);
-  const [URL, setURL] = useState(getAnime(id).url);
+  const [URL, setURL] = useState(getAnime(id) ? getAnime(id).url : "");
 
   useEffect(() => {
     setProgressArray(id, watchedArray);

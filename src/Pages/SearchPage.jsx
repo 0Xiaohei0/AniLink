@@ -55,6 +55,7 @@ function SearchPage() {
           }
           title {
             romaji
+            native
           }
         }
       }
