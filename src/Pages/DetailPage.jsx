@@ -5,6 +5,7 @@ import {
   getProgressArray,
   setProgressArray,
   getAnime,
+  setAnimeUrl,
 } from "../Data/Watchlist";
 
 function DetailPage() {
@@ -25,7 +26,7 @@ function DetailPage() {
     setEditURL(true);
   }
   function handleConfirmURL() {
-    getAnime(id).url = URL;
+    setAnimeUrl(id, URL);
     setEditURL(false);
   }
   function handleURLInput(event) {

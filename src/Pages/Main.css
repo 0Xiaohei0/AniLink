@@ -76,7 +76,10 @@
 .coverCard--name {
   font-weight: 700;
   font-size: 20px;
-  margin: 0;
+  margin: 5px 0 0 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .coverCard--progressBar {
@@ -148,8 +151,8 @@
 
 .Watchlist-Container {
   position: absolute;
-  top: 8vh;
-  padding: 5vw 5vw;
+  top: 100px;
+  padding: 0 5vw;
   width: 90vw;
 }
 

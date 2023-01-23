@@ -27,6 +27,14 @@ export function setProgressArray(aniId, progressArray) {
   setWatchlist(storedWatchList);
 }
 
+export function setAnimeUrl(aniId, url) {
+  let storedWatchList = getWatchlistFromLocalStorage();
+  let anime = storedWatchList.find((anime) => anime.id === aniId);
+  if (!anime) return;
+  anime.url = url;
+  setWatchlist(storedWatchList);
+}
+
 export function pushWatchlist(animeToPush) {
   let storedWatchList = getWatchlistFromLocalStorage();
   if (storedWatchList.find((anime) => anime.id === animeToPush.id)) {
@@ -37,13 +45,15 @@ export function pushWatchlist(animeToPush) {
   return true;
 }
 
-export function updateWatchlist(animeToUpdate, progressArray) {
+export function deleteWatchlist(aniId) {
   let storedWatchList = getWatchlistFromLocalStorage();
-  let animeToModify = storedWatchList.find(
-    (anime) => anime.id === animeToUpdate
-  );
-  animeToModify.progressArray = progressArray;
+  for (let i = 0; i < storedWatchList.length; i++) {
+    if (storedWatchList.at(i).id === aniId) {
+      storedWatchList.splice(i, 1);
+    }
+  }
   setWatchlist(storedWatchList);
+  return true;
 }
 
 function getWatchlistFromLocalStorage() {

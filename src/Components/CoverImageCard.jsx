@@ -7,7 +7,12 @@ import {
   faTrash,
   faLink,
 } from "@fortawesome/free-solid-svg-icons";
-import { pushWatchlist, getAnime } from "../Data/Watchlist";
+import {
+  pushWatchlist,
+  getAnime,
+  setProgressArray,
+  deleteWatchlist,
+} from "../Data/Watchlist";
 
 export default function CoverImageCard({
   id,
@@ -45,6 +50,25 @@ export default function CoverImageCard({
     });
   };
 
+  const handleCompelete = () => {
+    anime = getAnime(id);
+    if (!anime) {
+      pushWatchlist({
+        id: id,
+        imageUrl: imageUrl,
+        name: name,
+        type: type,
+        description: description,
+        episodes: episodes,
+        progressArray: new Array(episodes).fill(true),
+        progress: progress,
+        url: "https://www.crunchyroll.com/search?q=" + name.toString(),
+      });
+    } else {
+      setProgressArray(id, new Array(episodes).fill(true));
+    }
+  };
+
   const handleURL = () => {
     let Anime = getAnime(id);
     if (!Anime) return;
@@ -52,6 +76,10 @@ export default function CoverImageCard({
     url = url ? url : "https://www.crunchyroll.com/search?q=" + name.toString();
     console.log(url);
     window.location.href = url;
+  };
+
+  const handleDelete = () => {
+    deleteWatchlist(id);
   };
 
   const getProgressPercent = () => {
@@ -115,14 +143,21 @@ export default function CoverImageCard({
             ""
           )}
           {removeEnabled ? (
-            <button className="coverCard--addButton" onClick={handleAdd}>
+            <button
+              Onclick
+              className="coverCard--addButton"
+              onClick={handleDelete}
+            >
               <FontAwesomeIcon icon={faTrash} />
             </button>
           ) : (
             ""
           )}
           {finishEnabled ? (
-            <button className="coverCard--finishedButton">
+            <button
+              onClick={handleCompelete}
+              className="coverCard--finishedButton"
+            >
               <FontAwesomeIcon icon={faCheck} />
             </button>
           ) : (
