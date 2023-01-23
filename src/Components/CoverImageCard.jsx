@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faCheck, faTrash } from "@fortawesome/free-solid-svg-icons";
+import {
+  faPlus,
+  faCheck,
+  faTrash,
+  faLink,
+} from "@fortawesome/free-solid-svg-icons";
 import { pushWatchlist, getAnime } from "../Data/Watchlist";
 
 export default function CoverImageCard({
@@ -14,15 +19,16 @@ export default function CoverImageCard({
   addEnabled = true,
   finishEnabled = true,
   removeEnabled = false,
+  linkEnabled = true,
   progress = 0,
 }) {
-  const [isHovering, setIsHovering] = useState(false);
+  const [isHovering, setIsHovering] = useState(true);
   const handleMouseOver = () => {
     setIsHovering(true);
   };
 
   const handleMouseOut = () => {
-    setIsHovering(false);
+    setIsHovering(true);
   };
 
   const handleAdd = () => {
@@ -35,7 +41,17 @@ export default function CoverImageCard({
       episodes: episodes,
       progressArray: new Array(episodes).fill(false),
       progress: progress,
+      url: "https://www.crunchyroll.com/search?q=" + name.toString(),
     });
+  };
+
+  const handleURL = () => {
+    let Anime = getAnime(id);
+    if (!Anime) return;
+    let url = getAnime(id).url;
+    url = url ? url : "https://www.crunchyroll.com/search?q=" + name.toString();
+    console.log(url);
+    window.location.href = url;
   };
 
   const getProgressPercent = () => {
@@ -108,6 +124,13 @@ export default function CoverImageCard({
           {finishEnabled ? (
             <button className="coverCard--finishedButton">
               <FontAwesomeIcon icon={faCheck} />
+            </button>
+          ) : (
+            ""
+          )}
+          {linkEnabled ? (
+            <button onClick={handleURL} className="coverCard--linkButton">
+              <FontAwesomeIcon icon={faLink} />
             </button>
           ) : (
             ""

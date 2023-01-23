@@ -53,6 +53,13 @@
   right: 5px;
   border-radius: 60px;
 }
+
+.coverCard--linkButton {
+  position: absolute;
+  top: 105px;
+  right: 5px;
+  border-radius: 60px;
+}
 .coverCard--container:hover {
   color: brown;
 }
