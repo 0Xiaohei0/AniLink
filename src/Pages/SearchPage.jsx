@@ -150,6 +150,7 @@ function SearchPage() {
           className="userDropDown"
         >
           <a href="/login">Login</a>
+          <a href="/dataExport">Export Data</a>
         </div>
       </div>
 

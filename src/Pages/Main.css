@@ -138,15 +138,19 @@
 .userDropDown {
   position: fixed;
   background-color: white;
-  border-radius: 5px;
+  border-radius: 0;
   padding: 10px;
   top: 60px;
-  right: 10px;
+  right: 0px;
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(255, 231, 235);
 }
 
 .userDropDown > a {
   all: unset;
   cursor: pointer;
+  padding: 5px 0 5px 0;
 }
 
 .Watchlist-Container {

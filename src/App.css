@@ -6,6 +6,10 @@ body {
   font-family: "Montserrat", sans-serif;
 }
 
+section {
+  padding: 0 5vw 0 5vw;
+}
+
 Button {
   align-items: center;
   appearance: none;
