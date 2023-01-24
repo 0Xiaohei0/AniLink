@@ -72,7 +72,7 @@ function getWatchlistFromLocalStorage() {
 }
 
 export function setWatchlist(watchListInput) {
-  if (typeof watchListInput === Array)
+  if (typeof watchListInput === "object")
     localStorage.setItem("watchList", JSON.stringify(watchListInput));
   else if (typeof watchListInput === "string")
     localStorage.setItem("watchList", watchListInput);
