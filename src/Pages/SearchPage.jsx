@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowLeft,
   faMagnifyingGlass,
-  faUser,
+  faBars,
 } from "@fortawesome/free-solid-svg-icons";
 import { getProgressArray } from "../Data/Watchlist";
 
@@ -139,12 +139,14 @@ function SearchPage() {
         >
           <FontAwesomeIcon icon={faArrowLeft} />
         </button>
-        <div
-          className="userAvatar"
-          onMouseDown={() => setUserDropdownOpened(!userDropdownOpened)}
+
+        <button
+          className="Nambar--MenuButton"
+          onClick={() => setUserDropdownOpened(!userDropdownOpened)}
         >
-          <FontAwesomeIcon icon={faUser} />
-        </div>
+          <FontAwesomeIcon icon={faBars} />
+        </button>
+
         <div
           style={{ visibility: userDropdownOpened ? "visible" : "hidden" }}
           className="userDropDown"

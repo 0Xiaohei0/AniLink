@@ -1,6 +1,15 @@
+:root {
+  --primary: #edc787;
+  --secondary: #eee2dc;
+  --accent: #746950;
+  --accent2: #123c69;
+  --accent3: #ac3b61;
+}
 body {
   max-width: 100%;
   overflow-x: hidden;
+  background-color: var(--secondary);
+  color: var(--accent);
 }
 .App {
   font-family: "Montserrat", sans-serif;
