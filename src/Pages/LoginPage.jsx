@@ -4,7 +4,7 @@ import React from "react";
 function LoginPage() {
   return (
     <div className="LoginPage--Container">
-      <h1>Login</h1>
+      {/* <h1>Login</h1>
       <form action="/login" method="POST" className="LoginPage--Form">
         <div className="LoginPage--InputPair">
           <label htmlFor="email">Email</label>
@@ -16,7 +16,8 @@ function LoginPage() {
         </div>
         <button type="submit">Login</button>
       </form>
-      <a href="/register">Register</a>
+      <a href="/register">Register</a> */}
+      <div id="signInDiv"></div>
     </div>
   );
 }
