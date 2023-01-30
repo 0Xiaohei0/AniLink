@@ -8,12 +8,15 @@ import RegisterPage from "./Pages/RegisterPage";
 import WatchlistPage from "./Pages/WatchlistPage";
 import DataExportPage from "./Pages/DataExportPage";
 import jwtDecode from "jwt-decode";
+import axios from "axios";
 
 function App() {
-  function handleCallbackResponse(response) {
-    console.log("Encoded JWT ID token: " + response.credential);
+  async function handleCallbackResponse(response) {
+    //console.log("Encoded JWT ID token: " + response.credential);
     var userObject = jwtDecode(response.credential);
     console.log(userObject);
+    const r = await axios.get("http://localhost:3000/");
+    console.log(r);
   }
 
   useEffect(() => {
