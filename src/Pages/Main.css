@@ -28,7 +28,7 @@
   border-radius: 5px;
   max-width: fit-content;
   cursor: pointer;
-  transition: color 500ms;
+  transition: color 0.1s;
   position: relative;
 }
 
@@ -37,7 +37,7 @@
   border-radius: 5px;
   max-width: fit-content;
   cursor: pointer;
-  transition: color 500ms;
+  transition: color 0.1s;
   position: relative;
 }
 
@@ -176,13 +176,18 @@
 
 .Watchlist-Header {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
+}
+.Watchlist-Header h1 {
+  margin-bottom: 10px;
 }
 
 .Watchlist-Filter-Container {
   display: flex;
   flex-direction: row;
   align-items: space-around;
+  margin-bottom: 20px;
 }
 
 .Watchlist-Filter-left {
@@ -199,5 +204,5 @@
 }
 
 .Filter-Active {
-  background-color: rgb(158, 197, 255);
+  background-color: var(--primary);
 }

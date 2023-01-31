@@ -28,7 +28,7 @@ function WatchlistPage() {
     <div className="Watchlist-Container">
       <div className="Watchlist-Header">
         <h1>Watchlist</h1>
-        <span className="Watchlist-Filter-Container">
+        <div className="Watchlist-Filter-Container">
           <button
             onClick={() =>
               setFilter(() => {
@@ -80,7 +80,7 @@ function WatchlistPage() {
           >
             Finished
           </button>
-        </span>
+        </div>
       </div>
       {getWatchlist().filter(filter).length === 0 ? (
         <div>No Anime found with the given filter</div>
