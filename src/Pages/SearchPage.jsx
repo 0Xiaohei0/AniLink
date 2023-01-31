@@ -1,14 +1,16 @@
 import React from "react";
 import CoverImageCard from "../Components/CoverImageCard";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Main.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowLeft,
   faMagnifyingGlass,
-  faBars,
+  faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import { getProgressArray } from "../Data/Watchlist";
+import { getUser, isLoggedin, logout } from "../Data/User";
 
 function SearchPage() {
   const [search, setSearch] = useState("k-on");
@@ -123,6 +125,14 @@ function SearchPage() {
     setSearchResultOpened(true);
   }
 
+  const navigate = useNavigate();
+
+  function handleLogout(e) {
+    e.preventDefault();
+    logout();
+    navigate("/", { replace: true });
+  }
+
   return (
     <div>
       <div className="Navbar">
@@ -141,17 +151,32 @@ function SearchPage() {
         </button>
 
         <button
-          className="Nambar--MenuButton"
+          className="Navbar--MenuButton"
           onClick={() => setUserDropdownOpened(!userDropdownOpened)}
         >
-          <FontAwesomeIcon icon={faBars} />
+          {!isLoggedin() ? (
+            <FontAwesomeIcon icon={faUser} />
+          ) : (
+            <img
+              alt="User"
+              className="Navbar--ProfileImage"
+              src={getUser().picture}
+            />
+          )}
         </button>
 
         <div
           style={{ visibility: userDropdownOpened ? "visible" : "hidden" }}
           className="userDropDown"
         >
-          <a href="/login">Login</a>
+          {!isLoggedin() ? (
+            <a href="/login">Login</a>
+          ) : (
+            <a onClick={handleLogout} href="/">
+              Logout
+            </a>
+          )}
+
           <a href="/dataExport">Export Data</a>
         </div>
       </div>
