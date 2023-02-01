@@ -13,6 +13,7 @@ import {
   setProgressArray,
   deleteWatchlist,
 } from "../Data/Watchlist";
+import { toast } from "react-toastify";
 
 export default function CoverImageCard({
   id,
@@ -48,6 +49,7 @@ export default function CoverImageCard({
       progress: progress,
       url: "https://www.crunchyroll.com/search?q=" + name.toString(),
     });
+    toast.success(`${name} added to watchlist`);
   };
 
   const handleCompelete = () => {
@@ -67,6 +69,7 @@ export default function CoverImageCard({
     } else {
       setProgressArray(id, new Array(episodes).fill(true));
     }
+    toast.success(`${name} marked compelete`);
   };
 
   const handleURL = () => {
@@ -80,6 +83,7 @@ export default function CoverImageCard({
 
   const handleDelete = () => {
     deleteWatchlist(id);
+    toast.success(`${name} deleted from watchlist`);
   };
 
   const getProgressPercent = () => {

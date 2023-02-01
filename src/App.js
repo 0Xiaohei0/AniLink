@@ -1,4 +1,6 @@
 import "./App.css";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
 import { useEffect } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import SearchPage from "./Pages/SearchPage";
@@ -26,6 +28,7 @@ function App() {
         watchlistData: getWatchlist(),
       });
       console.log(r.data);
+      //toast.success(`cloud sync successful`);
     }
   }
   const navigate = useNavigate();
@@ -40,11 +43,12 @@ function App() {
       },
       { crossDomain: true }
     );
-    console.log(r.data);
     setWatchlist(r.data.watchlistData);
-    console.log(r.data.message);
 
     navigate("/");
+    toast.success(`Logged in as ${getUser().name}`);
+    toast(r.data.message);
+    toast(`Loaded ${r.data.watchlistData.length} shows`);
   }
 
   useEffect(() => {
@@ -66,21 +70,24 @@ function App() {
     } catch (error) {}
   });
   return (
-    <Routes>
-      <Route
-        path="/"
-        element={
-          <>
-            <WatchlistPage />
-            <SearchPage />
-          </>
-        }
-      />
-      <Route path="/login" element={<LoginPage />} />
-      <Route path="/register" element={<RegisterPage />} />
-      <Route path="/detail/:id" element={<DetailPage />} />
-      <Route path="/dataExport" element={<DataExportPage />} />
-    </Routes>
+    <>
+      <ToastContainer position="bottom-right" />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              <WatchlistPage />
+              <SearchPage />
+            </>
+          }
+        />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/detail/:id" element={<DetailPage />} />
+        <Route path="/dataExport" element={<DataExportPage />} />
+      </Routes>{" "}
+    </>
   );
 }
 
