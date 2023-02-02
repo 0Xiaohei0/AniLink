@@ -1,5 +1,7 @@
 Link to deployment: https://anilink.netlify.app/
 
+![screenshot](/Screenshot.png?raw=true "screenshot")
+
 # Another anime list website?
 
 So how is this one different than the well-established anime list websites out there?
