@@ -23,10 +23,13 @@ function App() {
   async function syncWatchlist() {
     if (isLoggedin()) {
       console.log("syncing watchlist for user" + getUser().sub);
-      const r = await axios.put("http://localhost:3000/watchlist", {
-        uId: getUser().sub,
-        watchlistData: getWatchlist(),
-      });
+      const r = await axios.put(
+        process.env.REACT_APP_BACKEND_URL + "/watchlist",
+        {
+          uId: getUser().sub,
+          watchlistData: getWatchlist(),
+        }
+      );
       console.log(r.data);
       //toast.success(`cloud sync successful`);
     }
@@ -36,7 +39,7 @@ function App() {
     //console.log("Encoded JWT ID token: " + response.credential);
     setUser(jwtDecode(response.credential));
     const r = await axios.post(
-      "http://localhost:3000/watchlist",
+      process.env.REACT_APP_BACKEND_URL + "/watchlist",
       {
         uId: getUser().sub,
         watchlistData: getWatchlist(),
@@ -55,8 +58,7 @@ function App() {
     try {
       /*global google */
       google.accounts.id.initialize({
-        client_id:
-          "63142776086-cjme36l60pq8m1hp0erirsqftbmu80e8.apps.googleusercontent.com",
+        client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
         callback: handleCallbackResponse,
       });
 
