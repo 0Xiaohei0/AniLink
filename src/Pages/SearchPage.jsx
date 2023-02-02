@@ -13,7 +13,7 @@ import { getProgressArray } from "../Data/Watchlist";
 import { getUser, isLoggedin, logout } from "../Data/User";
 
 function SearchPage() {
-  const [search, setSearch] = useState("k-on");
+  const [search, setSearch] = useState("");
   const [mediaArray, setMediaArray] = useState([]);
   const [searchResultOpened, setSearchResultOpened] = useState(false);
   const [userDropdownOpened, setUserDropdownOpened] = useState(false);
@@ -22,7 +22,9 @@ function SearchPage() {
     // Here we define our query as a multi-line string
     // Storing it in a separate .graphql/.gql file is also possible
     var query = `
-    query ( $page: Int, $perPage: Int= 30, $search: String = "k-on", $isAdult: Boolean = false, $sort: [MediaSort] = POPULARITY_DESC, $type: MediaType = ANIME) {
+    query ( $page: Int, $perPage: Int= 30, ${
+      SearchStringEmpty() ? "" : `$search: String = ""`
+    }, $isAdult: Boolean = false, $sort: [MediaSort] = TRENDING_DESC, $type: MediaType = ANIME) {
       Page (page: $page, perPage: $perPage) {
         pageInfo {
           total
@@ -31,7 +33,9 @@ function SearchPage() {
           hasNextPage
           perPage
         }
-        media ( search: $search, isAdult: $isAdult, sort: $sort, type: $type) {
+        media ( ${
+          SearchStringEmpty() ? "" : `search: $search`
+        }, isAdult: $isAdult, sort: $sort, type: $type) {
           id
           type
           description
@@ -67,7 +71,7 @@ function SearchPage() {
     // Define our query variables and values that will be used in the query request
     var variables = {
       search: search,
-      perPage: 10,
+      perPage: 30,
       isAdult: false,
     };
 
@@ -120,6 +124,10 @@ function SearchPage() {
   const handleChange = (event) => {
     setSearch(event.target.value);
   };
+
+  function SearchStringEmpty() {
+    return search.length === 0;
+  }
 
   function handleSearchBarClick() {
     setSearchResultOpened(true);
@@ -186,7 +194,10 @@ function SearchPage() {
           "CoverCardList--section " + (searchResultOpened ? "show" : "")
         }
       >
-        <h3> Search result: {search}</h3>
+        <h3>
+          {" "}
+          {SearchStringEmpty() ? "Trending shows:" : "Search result:"} {search}
+        </h3>
         <div className="CoverCardList--container">
           {mediaArray.map((Anime) => {
             return (
