@@ -1,3 +1,8 @@
+# Project description
+This website is used for watching anime. It allows you to store a custom link to your preferred streaming service and start watching in one click. You can also store watch progress data. You an export and import all your data using a json file. You can log in with your google account to have your data sync accross all your devices.
+
+The website uses react, express and mongoDB. The user data is stored in local storage. If the user logs in, user data is attached to their google account id and then sent to the backend database. The anime data comes from the Anilist Api (https://anilist.gitbook.io/anilist-apiv2-docs/).
+
 Link to deployment: https://anilink.netlify.app/
 
 ![screenshot](/Screenshot.png?raw=true "screenshot")
