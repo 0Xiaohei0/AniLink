@@ -2,17 +2,16 @@ import "./App.css";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 import { useEffect } from "react";
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import SearchPage from "./Pages/SearchPage";
 import DetailPage from "./Pages/DetailPage";
 import LoginPage from "./Pages/LoginPage";
 import RegisterPage from "./Pages/RegisterPage";
 import WatchlistPage from "./Pages/WatchlistPage";
 import DataExportPage from "./Pages/DataExportPage";
-import jwtDecode from "jwt-decode";
 import axios from "axios";
 import { getWatchlist, setWatchlist } from "./Data/Watchlist";
-import { getUser, isLoggedin, setUser } from "./Data/User";
+import { getUser, isLoggedin } from "./Data/User";
 
 function App() {
   window.addEventListener("storage", () => {
@@ -34,25 +33,6 @@ function App() {
       //toast.success(`cloud sync successful`);
     }
   }
-  const navigate = useNavigate();
-  async function handleCallbackResponse(response) {
-    //console.log("Encoded JWT ID token: " + response.credential);
-    setUser(jwtDecode(response.credential));
-    const r = await axios.post(
-      process.env.REACT_APP_BACKEND_URL + "/watchlist",
-      {
-        uId: getUser().sub,
-        watchlistData: getWatchlist(),
-      },
-      { crossDomain: true }
-    );
-    setWatchlist(r.data.watchlistData);
-
-    navigate("/");
-    toast.success(`Logged in as ${getUser().name}`);
-    toast(r.data.message);
-    toast(`Loaded ${r.data.watchlistData.length} shows`);
-  }
 
   async function fetchWatchlist() {
     const r = await axios.post(
@@ -73,21 +53,6 @@ function App() {
     if (isLoggedin()) {
       fetchWatchlist();
     }
-    try {
-      /*global google */
-      google.accounts.id.initialize({
-        client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
-        callback: handleCallbackResponse,
-      });
-
-      google.accounts.id.renderButton(document.getElementById("signInDiv"), {
-        theme: "outline",
-        size: "large",
-        type: "icon",
-        shape: "square",
-        text: "signin_with",
-      });
-    } catch (error) {}
   });
   return (
     <>
