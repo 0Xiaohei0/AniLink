@@ -54,7 +54,25 @@ function App() {
     toast(`Loaded ${r.data.watchlistData.length} shows`);
   }
 
+  async function fetchWatchlist() {
+    const r = await axios.post(
+      process.env.REACT_APP_BACKEND_URL + "/watchlist",
+      {
+        uId: getUser().sub,
+        watchlistData: getWatchlist(),
+      },
+      { crossDomain: true }
+    );
+    setWatchlist(r.data.watchlistData);
+    toast.success(`Logged in as ${getUser().name}`);
+    toast(r.data.message);
+    toast(`Loaded ${r.data.watchlistData.length} shows`);
+  }
+
   useEffect(() => {
+    if (isLoggedin()) {
+      fetchWatchlist();
+    }
     try {
       /*global google */
       google.accounts.id.initialize({
