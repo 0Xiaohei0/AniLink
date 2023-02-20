@@ -29,13 +29,13 @@ export default function CoverImageCard({
   linkEnabled = true,
   progress = 0,
 }) {
-  const [isHovering, setIsHovering] = useState(true);
+  const [isHovering, setIsHovering] = useState(false);
   const handleMouseOver = () => {
     setIsHovering(true);
   };
 
   const handleMouseOut = () => {
-    setIsHovering(true);
+    setIsHovering(false);
   };
 
   const handleAdd = () => {
