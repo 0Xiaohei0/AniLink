@@ -27,6 +27,7 @@
   all: unset;
   border-radius: 5px;
   max-width: fit-content;
+  height: fit-content;
   cursor: pointer;
   transition: color 0.1s;
   position: relative;
@@ -60,7 +61,7 @@
   right: 5px;
   border-radius: 60px;
 }
-.coverCard--container:hover {
+.coverCard--link:hover {
   color: brown;
 }
 
@@ -88,9 +89,22 @@
   border-radius: 3px;
   background-color: cadetblue;
 }
+.coverCard--progressContainer {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
 
 .coverCard--progress {
-  margin-top: 0;
+  margin: 0;
+  margin-right: auto;
+  display: inline;
+}
+
+.coverCard--incrementProgress {
+  padding: 0;
+  width: 30px;
+  height: 30px;
 }
 
 .Navbar {

@@ -132,11 +132,16 @@ export default function CoverImageCard({
                   : "rgb(99, 245, 66)",
             }}
           ></div>
-          <p className="coverCard--progress">
-            {progress + "/" + (episodes ? episodes : 1)}
-          </p>
         </div>
       </Link>
+      <div className="coverCard--progressContainer">
+        <p className="coverCard--progress">
+          {progress + "/" + (episodes ? episodes : 1)}
+        </p>
+        <button className="coverCard--incrementProgress">
+          <FontAwesomeIcon icon={faPlus} />
+        </button>
+      </div>
       {isHovering ? (
         <div>
           {addEnabled ? (
