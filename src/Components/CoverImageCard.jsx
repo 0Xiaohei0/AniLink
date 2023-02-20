@@ -12,6 +12,7 @@ import {
   getAnime,
   setProgressArray,
   deleteWatchlist,
+  incrementProgressArray,
 } from "../Data/Watchlist";
 import { toast } from "react-toastify";
 
@@ -52,8 +53,28 @@ export default function CoverImageCard({
     toast.success(`${name} added to watchlist`);
   };
 
+  const handleIncrement = () => {
+    anime = getAnime(id);
+    if (!anime) {
+      pushWatchlist({
+        id: id,
+        imageUrl: imageUrl,
+        name: name,
+        type: type,
+        description: description,
+        episodes: episodes,
+        progressArray: new Array(episodes).fill(true),
+        progress: progress,
+        url: "https://www.crunchyroll.com/search?q=" + name.toString(),
+      });
+    } else {
+      incrementProgressArray(id);
+    }
+  };
+
   const handleCompelete = () => {
     anime = getAnime(id);
+    console.log(anime);
     if (!anime) {
       pushWatchlist({
         id: id,
@@ -138,7 +159,10 @@ export default function CoverImageCard({
         <p className="coverCard--progress">
           {progress + "/" + (episodes ? episodes : 1)}
         </p>
-        <button className="coverCard--incrementProgress">
+        <button
+          className="coverCard--incrementProgress"
+          onClick={handleIncrement}
+        >
           <FontAwesomeIcon icon={faPlus} />
         </button>
       </div>

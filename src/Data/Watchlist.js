@@ -27,6 +27,20 @@ export function setProgressArray(aniId, progressArray) {
   setWatchlist(storedWatchList);
 }
 
+export function incrementProgressArray(aniId) {
+  let storedWatchList = getWatchlistFromLocalStorage();
+  let anime = storedWatchList.find((anime) => anime.id === aniId);
+  if (!anime) return;
+  for (let i = 0; i < anime.progressArray.length; i++) {
+    if (anime.progressArray[i] === false) {
+      anime.progressArray[i] = true;
+      anime.progress++;
+      break;
+    }
+  }
+  setWatchlist(storedWatchList);
+}
+
 export function setAnimeUrl(aniId, url) {
   let storedWatchList = getWatchlistFromLocalStorage();
   let anime = storedWatchList.find((anime) => anime.id === aniId);
